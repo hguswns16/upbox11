@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>업박스(UpBox) 기획 결정 항목 입력 페이지</title>
+    <style>
+        :root {
+            --bg: #f1f5f9;
+            --card-bg: #ffffff;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --text-main: #0f172a;
+            --text-sub: #64748b;
+            --border: #cbd5e1;
+            --accent: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            padding: 30px 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 760px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--bg);
+            color: var(--primary);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            background: #fff;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        textarea {
+            height: 80px;
+            resize: vertical;
+        }
+
+        .btn-box {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-save {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-save:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-reset {
+            background: #e2e8f0;
+            color: var(--text-sub);
+        }
+
+        .status {
+            display: none;
+            padding: 12px;
+            background: #dcfce7;
+            color: #15803d;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>🚀 업박스(UpBox) 기획자 결정 입력폼</h1>
+        <p>아래 입력창에 직접 텍스트를 작성하거나 수정해보세요.</p>
+    </div>
+
+    <form id="upboxForm" onsubmit="saveData(event)">
+        <div class="card">
+            <div class="card-title">✏️ 기획 결정 항목 (8가지)</div>
+            <div class="form-grid">
+                
+                <div class="field">
+                    <label for="serviceName">1. 서비스 이름</label>
+                    <input type="text" id="serviceName" value="업박스 (UpBox)" placeholder="서비스 이름을 입력하세요">
+                </div>
+
+                <div class="field">
+                    <label for="targetUser">2. 타깃 사용자</label>
+                    <input type="text" id="targetUser" value="택배기사님, 배달로봇" placeholder="사용자를 입력하세요">
+                </div>
+
+                <div class="field full">
+                    <label for="problem">3. 해결하려는 문제</label>
+                    <textarea id="problem" placeholder="해결하려는 핵심 문제를 입력하세요">기사님의 층별 이동시간 지연, 엘리베이터 점유로 인한 입주민 민원 발생, 배달로봇 승강기 탑승 제약 문제</textarea>
+                </div>
+
+                <div class="field">
+                    <label for="scoreStandard">4. 점수 기준</label>
+                    <input type="text" id="scoreStandard" value="배송 시간 단축률, 엘리베이터 점유 시간" placeholder="점수 산정 기준">
+                </div>
+
+                <div class="field">
+                    <label for="timeData">5. 택배 시간 데이터</label>
+                    <input type="text" id="timeData" value="문열림 3~5분 유지, 층간 이동 평균 15초" placeholder="시간 기준값">
+                </div>
+
+                <div class="field">
+                    <label for="seatStructure">6. 좌석/적재 구조</label>
+                    <input type="text" id="seatStructure" value="엘리베이터 내부 3단 이동 선반 및 층별 전용 칸 구획" placeholder="내부 구조 설정">
+                </div>
+
+                <div class="field">
+                    <label for="resultGrade">7. 결과 등급</label>
+                    <input type="text" id="resultGrade" value="S등급, A등급, B등급 (효율성 기준)" placeholder="결과 등급 체계">
+                </div>
+
+                <div class="field full">
+                    <label for="designDirection">8. 디자인 방향</label>
+                    <input type="text" id="designDirection" value="야외 가시성이 높은 고대비 UI, 직관적인 대형 버튼 중심 디자인" placeholder="디자인 컨셉 입력">
+                </div>
+
+            </div>
+        </div>
+
+        <div id="statusMsg" class="status">✅ 저장되었습니다! (브라우저에 데이터가 저장됨)</div>
+
+        <div class="btn-btn-box btn-box">
+            <button type="button" class="btn btn-reset" onclick="resetForm()">초기화</button>
+            <button type="submit" class="btn btn-save">기획 내용 저장하기</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    // 페이지 로드 시 저장된 내용 불러오기
+    window.onload = function() {
+        const savedData = localStorage.getItem('upbox_plan');
+        if (savedData) {
+            const data = JSON.parse(savedData);
+            document.getElementById('serviceName').value = data.serviceName || '';
+            document.getElementById('targetUser').value = data.targetUser || '';
+            document.getElementById('problem').value = data.problem || '';
+            document.getElementById('scoreStandard').value = data.scoreStandard || '';
+            document.getElementById('timeData').value = data.timeData || '';
+            document.getElementById('seatStructure').value = data.seatStructure || '';
+            document.getElementById('resultGrade').value = data.resultGrade || '';
+            document.getElementById('designDirection').value = data.designDirection || '';
+        }
+    };
+
+    function saveData(e) {
+        e.preventDefault();
+        const data = {
+            serviceName: document.getElementById('serviceName').value,
+            targetUser: document.getElementById('targetUser').value,
+            problem: document.getElementById('problem').value,
+            scoreStandard: document.getElementById('scoreStandard').value,
+            timeData: document.getElementById('timeData').value,
+            seatStructure: document.getElementById('seatStructure').value,
+            resultGrade: document.getElementById('resultGrade').value,
+            designDirection: document.getElementById('designDirection').value
+        };
+
+        localStorage.setItem('upbox_plan', JSON.stringify(data));
+        
+        const msg = document.getElementById('statusMsg');
+        msg.style.display = 'block';
+        setTimeout(() => {
+            msg.style.display = 'none';
+        }, 2000);
+    }
+
+    function resetForm() {
+        if (confirm('모든 내용을 초기화하시겠습니까?')) {
+            document.getElementById('upboxForm').reset();
+            localStorage.removeItem('upbox_plan');
+        }
+    }
+</script>
+
+</body>
+</html>
